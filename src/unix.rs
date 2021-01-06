@@ -5,9 +5,9 @@ use std::os::unix::prelude::*;
 use std::path::Path;
 use std::time::Duration;
 
-use mio::unix::SourceFd;
-use mio::{Interest, Token, Registry};
 use mio::event::Source;
+use mio::unix::SourceFd;
+use mio::{Interest, Registry, Token};
 
 use serialport::posix::TTYPort;
 use serialport::prelude::*;
@@ -504,11 +504,21 @@ impl FromRawFd for Serial {
 }
 
 impl Source for Serial {
-    fn register(&mut self, registry: &Registry, token: Token, interests: Interest) -> io::Result<()> {
+    fn register(
+        &mut self,
+        registry: &Registry,
+        token: Token,
+        interests: Interest,
+    ) -> io::Result<()> {
         SourceFd(&self.as_raw_fd()).register(registry, token, interests)
     }
 
-    fn reregister(&mut self, registry: &Registry, token: Token, interests: Interest) -> io::Result<()> {
+    fn reregister(
+        &mut self,
+        registry: &Registry,
+        token: Token,
+        interests: Interest,
+    ) -> io::Result<()> {
         SourceFd(&self.as_raw_fd()).reregister(registry, token, interests)
     }
 
