@@ -22,7 +22,7 @@ default = ["libudev"]
 libudev = ["serialport/libudev"]
 
 [dependencies]
-mio = { version = "^0.7", features = ["os-ext"] }
+mio = { version = "^0.7", features = ["os-ext", "os-util"] }
 serialport = { version = "~3.3", default-features = false }
 
 [target.'cfg(unix)'.dependencies]
@@ -30,7 +30,6 @@ nix = "^0.17"
 
 [target.'cfg(windows)'.dependencies]
 winapi = { version = "0.3", features = ["commapi", "handleapi", "winbase"] }
-mio-named-pipes = "0.1.5"
 
 [[example]]
 name = "serial_printline"
