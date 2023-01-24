@@ -366,6 +366,12 @@ impl Source for Serial {
     }
 }
 
+impl AsRawHandle for Serial {
+    fn as_raw_handle(&self) -> RawHandle {
+        self.inner.as_raw_handle()
+    }
+}
+
 /// Overrides timeout value set by serialport-rs so that the read end will
 /// never wake up with 0-byte payload.
 fn override_comm_timeouts(handle: RawHandle) -> io::Result<()> {
