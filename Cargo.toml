@@ -22,7 +22,7 @@ default = ["libudev"]
 libudev = ["serialport/libudev"]
 
 [dependencies]
-mio = { version = "^0.7", features = ["os-ext", "os-util"] }
+mio = { version = "^0.8", features = ["os-ext"] }
 serialport = { version = "~3.3", default-features = false }
 
 [target.'cfg(unix)'.dependencies]
